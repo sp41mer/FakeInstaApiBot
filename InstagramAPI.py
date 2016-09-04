@@ -6,6 +6,7 @@ import json
 import hashlib
 import hmac
 import urllib
+import time
 
 class InstagramAPI:
     API_URL = 'https://i.instagram.com/api/v1/'
@@ -478,10 +479,33 @@ class InstagramAPI:
             print ("Request return " + str(response.status_code) + " error!")
             return False
 
+    def getTotalFollowers(self,usernameId):
+        followers = []
+        next_max_id = ''
+        while 1:
+            self.getUserFollowers(usernameId,next_max_id)
+            temp = self.LastJson
 
-InstagramAPI = InstagramAPI("login", "password")
-InstagramAPI.login() # login
-InstagramAPI.tagFeed("cat") # get media list by tag #cat
-media_id = InstagramAPI.LastJson # last response JSON
-InstagramAPI.like(media_id["ranked_items"][0]["pk"]) # like first media
-InstagramAPI.getUserFollowers(media_id["ranked_items"][0]["user"]["pk"]) # get first media owner followers
+            for item in temp["users"]:
+                followers.append(item)
+
+            if temp["big_list"] == False:
+                return followers
+            next_max_id = temp["next_max_id"]
+            time.sleep(0.3)
+
+    def getTotalFollowings(self,usernameId):
+        followers = []
+        next_max_id = ''
+        while 1:
+            self.getUserFollowings(usernameId,next_max_id)
+            temp = self.LastJson
+
+            for item in temp["users"]:
+                followers.append(item)
+
+            if temp["big_list"] == False:
+                return followers
+            next_max_id = temp["next_max_id"]
+
+
