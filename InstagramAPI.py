@@ -483,7 +483,7 @@ class InstagramAPI:
         followers = []
         next_max_id = ''
         while 1:
-            self.getUserFollowers(usernameId,next_max_id)
+            self.getUserFollowers(usernameId, next_max_id)
             temp = self.LastJson
 
             for item in temp["users"]:
@@ -491,6 +491,7 @@ class InstagramAPI:
 
             if temp["big_list"] == False:
                 return followers
+            print(temp["next_max_id"])
             next_max_id = temp["next_max_id"]
             time.sleep(0.3)
 
