@@ -24,11 +24,23 @@ class Friendship(peewee.Model):
     class Meta:
         database = database
 
+class Users(peewee.Model):
+    pk = peewee.BigIntegerField(index=True)
+    full_name = peewee.CharField(default='', null=True)
+    has_anonymous_profile_picture = peewee.CharField(default='', null=True)
+    is_private = peewee.CharField(default='', null=True)
+    is_verified = peewee.CharField(default='', null=True)
+    profile_pic_url = peewee.CharField(default='', null=True)
+    username = peewee.CharField(default='', null=True)
+    insta_link = peewee.CharField(default='', null=True)
+    class Meta:
+        database = database
+
 def create_tables():
     database.connect()
     try:
-        database.create_tables([Group], True)
+        database.create_tables([Profile,Friendship,Users], True)
     except Exception as e:
         print(str(e))
 
-create_tables()
+#create_tables()
