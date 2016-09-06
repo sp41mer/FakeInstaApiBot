@@ -5,6 +5,10 @@ import peewee
 
 app = Flask(__name__)
 
+@app.route('/')
+def index_page():
+     return render_template('index.html')
+
 @app.route('/follow')
 def give_follow_data():
      return render_template('follow_dynamics.html')
