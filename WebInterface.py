@@ -1,7 +1,8 @@
 __author__ = 'sp41mer'
 from flask import Flask, render_template, request, jsonify
-from models import Profile, Friendship
 import peewee
+
+from code.models import Profile, Friendship
 
 app = Flask(__name__)
 

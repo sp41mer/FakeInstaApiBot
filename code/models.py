@@ -36,10 +36,17 @@ class Users(peewee.Model):
     class Meta:
         database = database
 
+class MyLikes(peewee.Model):
+    date = peewee.CharField(default='', null=True)
+    user_pk = peewee.BigIntegerField(index=True)
+    media_id = peewee.CharField(index=True)
+    class Meta:
+        database = database
+
 def create_tables():
     database.connect()
     try:
-        database.create_tables([Profile,Friendship,Users], True)
+        database.create_tables([Profile, Friendship, Users, MyLikes], True)
     except Exception as e:
         print(str(e))
 

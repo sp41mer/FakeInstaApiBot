@@ -304,9 +304,10 @@ class InstagramAPI:
         # TODO Instagram.php 1180-1190
         return query
 
-    def getUserFeed(self, usernameId, maxid = '', minTimestamp = None):
+    def getUserFeed(self, usernameId, maxid = '', minTimestamp = ''):
+        query = self.SendRequest('feed/user/'+str(usernameId)+'/?rank_token='+str(self.rank_token)+'&max_id='+str(maxid)+'&min_timestamp='+str(minTimestamp)+'&ranked_content=true')
         # TODO Instagram.php 1200-1220
-        return False
+        return query
 
     def getSelfUserFeed(self):
         return self.getUserFeed(self.username_id)

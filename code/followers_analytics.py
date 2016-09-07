@@ -1,7 +1,8 @@
 __author__ = 'sp41mer'
 import datetime
-from InstagramAPI import InstagramAPI
-from models import Users,Profile, Friendship
+
+from code.InstagramAPI import InstagramAPI
+from models import Users, Profile, Friendship
 
 InstagramAPI = InstagramAPI("testing_accaunt", "cgfhnfrxtvgbjy1922")
 InstagramAPI.login()
